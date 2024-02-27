@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 import { CarProps } from '@/types'
 import { calculateCarRent } from '@/utils';
 import Image from 'next/image';
-import { CustomButton } from '.';
+import { CardDetails, CustomButton } from '.';
 interface CardCarProps{
 	car: CarProps
+	key: number
 }
-const CarCard = ({car}:CardCarProps) => {
+const CarCard = ({car,key}:CardCarProps) => {
 	const {city_mpg, year, make, model, transmission, drive} = car;
 	const carRent = calculateCarRent(city_mpg, year);
 	const [isOpen, setIsOpen] = useState(false)
 	return (
-		<div className='car-card group'>
+		<div key={key} className='car-card group'>
 			<div className='car-card__content'>
 				<h2 className='car-card__content-title'>
 					{make}-{model}
@@ -89,7 +90,11 @@ const CarCard = ({car}:CardCarProps) => {
 				</div>
 			</div>
 
-			{/* <CarDetails /> */}
+			<CardDetails
+				isOpen={isOpen}
+				closeModal={() => setIsOpen(false)}
+				car={car}
+			/>
 		</div>
 	)
 }
