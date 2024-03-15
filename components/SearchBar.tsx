@@ -34,6 +34,9 @@ const SearchBar = () => {
 		else searchParams.delete("model");
 		if(manufacturer) searchParams.set("manufacturer", manufacturer);
 		else searchParams.delete("manufacturer");
+		// console.log('====================================');
+		// console.log(window.location.pathname); // /
+		// console.log('====================================');
 		const newPathName = `${window.location.pathname}?${searchParams.toString()}`;
 		// console.log('====================================');
 		// console.log(newPathName);
@@ -48,8 +51,6 @@ const SearchBar = () => {
 		}
 		updateParams(model.toLowerCase(), manufacturer.toLowerCase());
 		// alert(`manufacturer: ${manufacturer} y modelo: ${model}`);
-
-
 	}
 	return (
 		<form className="searchbar" onSubmit={handleSearch}>
